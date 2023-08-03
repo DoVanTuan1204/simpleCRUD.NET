@@ -1,0 +1,39 @@
+﻿@model IEnumerable<quanlycongviec.Models.nhanvien>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateEmployee")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên nhân viên
+        </th>
+        <th>
+           Chức danh
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vitri.titlename)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "UpdateEmployee", new { id=item.id }) |
+            @Html.ActionLink("Delete", "DeleteEmployee", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

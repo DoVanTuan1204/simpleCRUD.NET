@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="quanlycongviecModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="congviec">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="workname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="startday" Type="DateTime" Precision="0" />
+    <Property Name="endday" Type="DateTime" Precision="0" />
+    <Property Name="nhanvien_name" Type="Int32" />
+    <NavigationProperty Name="nhanvien" Relationship="Self.FK__congviec__nhanvi__4316F928" FromRole="congviec" ToRole="nhanvien" />
+  </EntityType>
+  <EntityType Name="nhanvien">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="Int32" />
+    <NavigationProperty Name="congviecs" Relationship="Self.FK__congviec__nhanvi__4316F928" FromRole="nhanvien" ToRole="congviec" />
+    <NavigationProperty Name="vitri" Relationship="Self.FK__nhanvien__title__398D8EEE" FromRole="nhanvien" ToRole="vitri" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="vitri">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titlename" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="nhanviens" Relationship="Self.FK__nhanvien__title__398D8EEE" FromRole="vitri" ToRole="nhanvien" />
+  </EntityType>
+  <Association Name="FK__congviec__nhanvi__4316F928">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="0..1" />
+    <End Role="congviec" Type="Self.congviec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="congviec">
+        <PropertyRef Name="nhanvien_name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__nhanvien__title__398D8EEE">
+    <End Role="vitri" Type="Self.vitri" Multiplicity="0..1" />
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vitri">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="nhanvien">
+        <PropertyRef Name="title" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="quanlycongviecEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="congviecs" EntityType="Self.congviec" />
+    <EntitySet Name="nhanviens" EntityType="Self.nhanvien" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="vitris" EntityType="Self.vitri" />
+    <AssociationSet Name="FK__congviec__nhanvi__4316F928" Association="Self.FK__congviec__nhanvi__4316F928">
+      <End Role="nhanvien" EntitySet="nhanviens" />
+      <End Role="congviec" EntitySet="congviecs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__nhanvien__title__398D8EEE" Association="Self.FK__nhanvien__title__398D8EEE">
+      <End Role="vitri" EntitySet="vitris" />
+      <End Role="nhanvien" EntitySet="nhanviens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

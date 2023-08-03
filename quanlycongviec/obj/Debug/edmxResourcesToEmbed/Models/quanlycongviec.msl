@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="quanlycongviecModelStoreContainer" CdmEntityContainer="quanlycongviecEntities">
+    <EntitySetMapping Name="congviecs">
+      <EntityTypeMapping TypeName="quanlycongviecModel.congviec">
+        <MappingFragment StoreEntitySet="congviec">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="workname" ColumnName="workname" />
+          <ScalarProperty Name="startday" ColumnName="startday" />
+          <ScalarProperty Name="endday" ColumnName="endday" />
+          <ScalarProperty Name="nhanvien_name" ColumnName="nhanvien_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nhanviens">
+      <EntityTypeMapping TypeName="quanlycongviecModel.nhanvien">
+        <MappingFragment StoreEntitySet="nhanvien">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="title" ColumnName="title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="quanlycongviecModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vitris">
+      <EntityTypeMapping TypeName="quanlycongviecModel.vitri">
+        <MappingFragment StoreEntitySet="vitri">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="titlename" ColumnName="titlename" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

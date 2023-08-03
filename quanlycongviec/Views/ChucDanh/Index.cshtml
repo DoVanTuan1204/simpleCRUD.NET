@@ -1,0 +1,31 @@
+﻿@model IEnumerable<quanlycongviec.Models.vitri>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách chức danh</h2>
+<a href="~/ChucDanh/AddNewTitle">
+    Thêm mới chức danh
+</a>
+<table class="table">
+    <tr>
+        <th>
+           Tên chức danh
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.titlename)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "UpdateTitle", new { id=item.id }) |
+            @Html.ActionLink("Delete", "DeleteTitle", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

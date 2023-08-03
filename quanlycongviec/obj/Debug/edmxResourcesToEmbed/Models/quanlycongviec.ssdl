@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="quanlycongviecModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="congviec">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="workname" Type="nvarchar" MaxLength="250" />
+    <Property Name="startday" Type="date" />
+    <Property Name="endday" Type="date" />
+    <Property Name="nhanvien_name" Type="int" />
+  </EntityType>
+  <EntityType Name="nhanvien">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="title" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="vitri">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="titlename" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK__congviec__nhanvi__4316F928">
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="0..1" />
+    <End Role="congviec" Type="Self.congviec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nhanvien">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="congviec">
+        <PropertyRef Name="nhanvien_name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__nhanvien__title__398D8EEE">
+    <End Role="vitri" Type="Self.vitri" Multiplicity="0..1" />
+    <End Role="nhanvien" Type="Self.nhanvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vitri">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="nhanvien">
+        <PropertyRef Name="title" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="quanlycongviecModelStoreContainer">
+    <EntitySet Name="congviec" EntityType="Self.congviec" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="nhanvien" EntityType="Self.nhanvien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vitri" EntityType="Self.vitri" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__congviec__nhanvi__4316F928" Association="Self.FK__congviec__nhanvi__4316F928">
+      <End Role="nhanvien" EntitySet="nhanvien" />
+      <End Role="congviec" EntitySet="congviec" />
+    </AssociationSet>
+    <AssociationSet Name="FK__nhanvien__title__398D8EEE" Association="Self.FK__nhanvien__title__398D8EEE">
+      <End Role="vitri" EntitySet="vitri" />
+      <End Role="nhanvien" EntitySet="nhanvien" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

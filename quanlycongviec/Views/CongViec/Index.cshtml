@@ -1,0 +1,52 @@
+﻿@model IEnumerable<quanlycongviec.Models.congviec>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách công việc</h2>
+<div class="container">
+    <a href="~/CongViec/AddNewWork">
+        Thêm mới công việc
+    </a>
+    <table class="table">
+        <tr>
+            <th>
+                Tên công việc
+            </th>
+            <th>
+                Ngày bắt đầu
+            </th>
+            <th>
+                Ngày kết thúc
+            </th>
+            <th>
+                Nhân viên thực hiện
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.workname)
+                </td>
+                <td>
+                    @string.Format("{0:dd/MM/yyyy}", item.startday)
+                </td>
+                <td>
+                    @string.Format("{0:dd/MM/yyyy}", item.endday)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nhanvien.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "UpdateWork", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "DeleteWork", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
